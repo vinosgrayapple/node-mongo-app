@@ -1,0 +1,31 @@
+<h2>Todo page</h2>
+
+{{#if todos.length}}
+<ul class="todo">
+    {{#each todos}}
+    <li>
+        <form action="/complete" id="{{_id}}" method="POST">
+            <script>
+                document.getElementById("{{_id}}").addEventListener('click', function () {
+                    this.submit()
+                })
+            </script>
+            <label>
+                {{#if completed}}
+                <input type="checkbox" checked name="comp">
+                <span class="completed">{{title}}</span>
+                <input type="hidden" value="{{_id}}" name="id">
+                {{else}}
+                <input type="checkbox" name="comp">
+                <span>{{title}}</span>
+                <input type="hidden" value="{{_id}}" name="id">
+                {{/if}}
+                {{!-- <button class="btn btn-small" type="submit">Save</button> --}}
+            </label>
+        </form>
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<p>No todos</p>
+{{/if}}
